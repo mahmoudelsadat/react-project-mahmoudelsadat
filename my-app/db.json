@@ -1,0 +1,18 @@
+{
+  "users": [
+    { "id": 1, "email": "executive@example.com", "role": "vip" }
+  ],
+  "sleep-protocols": [
+    {
+      "id": "SLP-CORT-094",
+      "name": "Executive Cortisol Regulation Stack",
+      "status": "3 Units Allocated",
+      "price": 1500,
+      "timeline": [
+        { "time": "21:00", "action": "Ingest Magnesium L-Threonate" },
+        { "time": "22:00", "action": "Initiate Blue Light Block / Apigenin" },
+        { "time": "23:00", "action": "Core Temperature Drop Protocol" }
+      ]
+    }
+  ]
+}
