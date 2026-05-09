@@ -4,44 +4,74 @@ export const luxuryTheme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#060700', 
-      paper: '#0a0b00',
+      default: '#080C16', // Deep, calming night sky
+      paper: '#111827', // Soft translucent dark blue
     },
     primary: {
-      main: '#D4AF37', 
+      main: '#A7C7E7', // Soft moonlight blue
     },
     text: {
-      primary: '#F5F5F5',
-      secondary: '#D4AF37',
+      primary: '#F0F4F8', // Soft off-white to reduce eye strain
+      secondary: '#8BA4D4', // Muted lavender-blue
     },
   },
   typography: {
-    fontFamily: '"Helvetica Neue", "Arial", sans-serif',
+    fontFamily: '"Montserrat", "Arial", sans-serif',
     h1: {
-      fontWeight: 900,
-      letterSpacing: '0.15em',
-      textTransform: 'uppercase',
+      fontWeight: 300,
+      letterSpacing: '0.1em',
+      color: '#E2E8F0',
     },
     h2: {
-      fontWeight: 700,
-      letterSpacing: '0.1em',
+      fontWeight: 300,
+      letterSpacing: '0.08em',
+      color: '#A7C7E7',
+    },
+    h3: {
+      fontWeight: 400,
+      letterSpacing: '0.05em',
+    },
+    h4: {
+      fontWeight: 400,
     },
     button: {
       letterSpacing: '0.1em',
-      fontWeight: 600,
+      fontWeight: 500,
     },
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 0,
-          border: '1px solid #D4AF37',
-          padding: '12px 24px',
+          borderRadius: '30px', // Soft, pill-shaped buttons
+          border: '1px solid rgba(167, 199, 231, 0.3)',
+          padding: '12px 32px',
           backgroundColor: 'transparent',
+          transition: 'all 0.5s ease-in-out',
           '&:hover': {
-            backgroundColor: '#D4AF37',
-            color: '#060700',
+            backgroundColor: 'rgba(167, 199, 231, 0.1)',
+            borderColor: '#A7C7E7',
+            boxShadow: '0 0 20px rgba(167, 199, 231, 0.2)',
+          },
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: '24px', // Softened card edges
+          backgroundImage: 'none',
+          backgroundColor: 'rgba(17, 24, 39, 0.6)',
+          backdropFilter: 'blur(12px)',
+          border: '1px solid rgba(139, 164, 212, 0.1)',
+        }
+      }
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          '&:after': {
+            borderBottomColor: '#A7C7E7 !important',
           },
         },
       },

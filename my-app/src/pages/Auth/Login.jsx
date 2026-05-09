@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/checkout');
+      navigate('/dashboard');
     } catch (err) {
       setError("Invalid executive credentials.");
     }
@@ -23,10 +23,14 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate('/checkout');
+      navigate('/dashboard');
     } catch (err) {
       setError("Google Authentication failed.");
     }
+  };
+  
+  const handleMagicLink = () => {
+    alert("Magic link sent to " + (email || "your corporate email."));
   };
 
   return (
@@ -43,32 +47,33 @@ const Login = () => {
           <form onSubmit={handleEmailLogin}>
             <TextField 
               fullWidth 
-              variant="outlined" 
+              variant="standard" 
               placeholder="Corporate Email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              sx={{ mb: 3, input: { color: '#fff' }, fieldset: { borderColor: '#333' } }}
+              sx={{ mb: 4, input: { color: '#fff', textAlign: 'center', letterSpacing: '0.1em' } }}
             />
             <TextField 
               fullWidth 
               type="password"
-              variant="outlined" 
+              variant="standard" 
               placeholder="Secure Password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              sx={{ mb: 4, input: { color: '#fff' }, fieldset: { borderColor: '#333' } }}
+              sx={{ mb: 5, input: { color: '#fff', textAlign: 'center', letterSpacing: '0.1em' } }}
             />
-            <Button type="submit" fullWidth sx={{ bgcolor: '#D4AF37', color: '#060700', py: 1.5, mb: 3, '&:hover': { bgcolor: '#fff' } }}>
+            <Button type="submit" fullWidth sx={{ bgcolor: '#D4AF37', color: '#060700', py: 1.5, mb: 2, '&:hover': { bgcolor: '#fff' } }}>
               AUTHORIZE ACCESS
+            </Button>
+            <Button fullWidth onClick={handleMagicLink} sx={{ color: '#888', border: 'none', py: 1, mb: 3, fontSize: '0.8rem' }}>
+              REQUEST SECURE MAGIC LINK
             </Button>
           </form>
 
           <Divider sx={{ bgcolor: '#333', mb: 3 }} />
-
           <Button fullWidth onClick={handleGoogleLogin} sx={{ color: '#D4AF37', py: 1.5, mb: 3 }}>
             AUTHENTICATE VIA GOOGLE
           </Button>
-
           <Typography variant="body2" sx={{ color: '#888' }}>
             No profile? <Link to="/register" style={{ color: '#D4AF37', textDecoration: 'none' }}>Initialize an account</Link>.
           </Typography>

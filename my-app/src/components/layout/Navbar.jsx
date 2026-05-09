@@ -11,9 +11,8 @@ const Navbar = () => {
   const { currentUser } = useAuth();
   const { vaultItems } = useCart();
   const navigate = useNavigate();
-
   const { t, i18n } = useTranslation();
-
+  
   const handleLogout = async () => {
     await signOut(auth);
     navigate("/");
@@ -22,120 +21,53 @@ const Navbar = () => {
   const toggleLanguage = () => {
     const currentLang = i18n.language || window.localStorage.i18nextLng || "en";
     const newLang = currentLang.startsWith("en") ? "ar" : "en";
-
     i18n.changeLanguage(newLang);
-
     document.dir = newLang === "ar" ? "rtl" : "ltr";
-
-    if (newLang === "ar") {
-      document.body.style.fontFamily = '"Cairo", "Tajawal", sans-serif';
-    } else {
-      document.body.style.fontFamily = '"Helvetica Neue", "Arial", sans-serif';
-    }
+    document.body.style.fontFamily = newLang === "ar" ? '"Cairo", sans-serif' : '"Montserrat", sans-serif';
   };
 
   return (
-    <AppBar
-      position="sticky"
-      sx={{
-        bgcolor: "#0a0b00",
-        borderBottom: "1px solid #333",
-        boxShadow: "none",
-      }}
-    >
-      <Toolbar sx={{ justifyContent: "space-between", py: 2 }}>
-        <Box
-          component={Link}
-          to="/"
-          sx={{
-            textDecoration: "none",
-            bgcolor: "#D4AF37",
-            px: 3,
-            py: 1,
-            display: "flex",
-            alignItems: "center",
-            boxShadow: "0 0 15px rgba(212, 175, 55, 0.2)",
-          }}
-        >
-          <Typography
-            variant="h4"
-            sx={{ color: "#060700", fontWeight: 900, letterSpacing: "0.2em" }}
-          >
+    <AppBar position="sticky" sx={{ bgcolor: 'rgba(8, 12, 22, 0.6)', backdropFilter: 'blur(15px)', borderBottom: '1px solid rgba(139, 164, 212, 0.05)', boxShadow: 'none' }}>
+      <Toolbar sx={{ justifyContent: "space-between", py: 1 }}>
+        <Box component={Link} to="/" sx={{ textDecoration: "none", px: 2, py: 1, display: "flex", alignItems: "center" }}>
+          <Typography variant="h4" sx={{ color: "#E2E8F0", fontWeight: 300, letterSpacing: "0.2em", textShadow: '0 0 15px rgba(167, 199, 231, 0.4)' }}>
             2M
           </Typography>
         </Box>
 
         <Box sx={{ display: "flex", gap: 3, alignItems: "center" }}>
-          <Button
-            component={Link}
-            to="/"
-            sx={{ color: "#F5F5F5", border: "none" }}
-          >
+          <Button component={Link} to="/" sx={{ color: "#8BA4D4", border: "none", fontWeight: 400, '&:hover': { color: '#fff', boxShadow: 'none', bgcolor: 'transparent' } }}>
             {t("nav_sleep")}
           </Button>
 
           {currentUser ? (
             <>
-              <Badge
-                badgeContent={vaultItems?.length || 0}
-                sx={{
-                  "& .MuiBadge-badge": { bgcolor: "#D4AF37", color: "#060700" },
-                }}
-              >
-                <Button
-                  component={Link}
-                  to="/checkout"
-                  sx={{ color: "#D4AF37", border: "1px solid #D4AF37" }}
-                >
+              <Button component={Link} to="/dashboard" sx={{ color: "#8BA4D4", border: "none", fontWeight: 400, '&:hover': { color: '#fff', boxShadow: 'none', bgcolor: 'transparent' } }}>
+                SANCTUARY
+              </Button>
+              <Badge badgeContent={vaultItems?.length || 0} sx={{ "& .MuiBadge-badge": { bgcolor: "rgba(167, 199, 231, 0.2)", color: "#A7C7E7", border: '1px solid #A7C7E7' } }}>
+                <Button component={Link} to="/checkout" sx={{ color: "#A7C7E7", borderColor: "rgba(167, 199, 231, 0.3)" }}>
                   {t("nav_checkout")}
                 </Button>
               </Badge>
-              <Button
-                onClick={handleLogout}
-                sx={{
-                  color: "#888",
-                  border: "none",
-                  "&:hover": { color: "#ff4444" },
-                }}
-              >
+              <Button onClick={handleLogout} sx={{ color: "#4A5568", border: "none", fontWeight: 400, "&:hover": { color: "#A7C7E7", boxShadow: 'none', bgcolor: 'transparent' } }}>
                 {t("nav_logout")}
               </Button>
             </>
           ) : (
             <>
-              <Button
-                component={Link}
-                to="/login"
-                sx={{ color: "#D4AF37", border: "none" }}
-              >
+              <Button component={Link} to="/login" sx={{ color: "#8BA4D4", border: "none", fontWeight: 400, '&:hover': { color: '#fff', boxShadow: 'none', bgcolor: 'transparent' } }}>
                 {t("nav_login")}
               </Button>
-              <Button
-                component={Link}
-                to="/register"
-                sx={{
-                  color: "#060700",
-                  bgcolor: "#D4AF37",
-                  "&:hover": { bgcolor: "#fff" },
-                }}
-              >
+              <Button component={Link} to="/register" sx={{ color: "#080C16", bgcolor: "#A7C7E7", "&:hover": { bgcolor: "#fff" } }}>
                 {t("nav_register")}
               </Button>
             </>
           )}
 
-          <Box sx={{ width: "1px", height: "24px", bgcolor: "#333", mx: 1 }} />
-
-          <Button
-            onClick={toggleLanguage}
-            sx={{
-              color: "#888",
-              minWidth: "40px",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              "&:hover": { color: "#fff", bgcolor: "transparent" },
-            }}
-          >
+          <Box sx={{ width: "1px", height: "16px", bgcolor: "rgba(139, 164, 212, 0.2)", mx: 1 }} />
+          
+          <Button onClick={toggleLanguage} sx={{ color: "#4A5568", minWidth: "40px", fontWeight: 400, letterSpacing: "0.1em", border: 'none', "&:hover": { color: "#E2E8F0", bgcolor: "transparent", boxShadow: 'none' } }}>
             {i18n.language?.startsWith("en") ? "عربي" : "EN"}
           </Button>
         </Box>

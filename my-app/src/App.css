@@ -181,4 +181,40 @@
     right: 0;
     border-right-color: var(--border);
   }
+  :root {
+  --sans: "Montserrat", system-ui, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  /* A calming gradient that looks like looking up at the night sky */
+  background: radial-gradient(circle at 50% -20%, #17223B 0%, #080C16 80%);
+  background-attachment: fixed;
+  color: #F0F4F8;
+}
+
+/* Slow, 4-second breathing animation for mood stabilization */
+@keyframes heavenlyBreathe {
+  0% { box-shadow: 0 0 15px rgba(167, 199, 231, 0.05); }
+  50% { box-shadow: 0 0 35px rgba(167, 199, 231, 0.2); }
+  100% { box-shadow: 0 0 15px rgba(167, 199, 231, 0.05); }
+}
+
+.breathing-container {
+  animation: heavenlyBreathe 4s ease-in-out infinite;
+}
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
 }
